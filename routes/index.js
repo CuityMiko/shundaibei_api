@@ -12,4 +12,7 @@ module.exports = function(app) {
 
   // 登录
   require('./login')(app);
+
+  // 微信请求
+  require('./wx')(app);
 };

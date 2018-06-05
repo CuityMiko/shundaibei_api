@@ -1,23 +1,35 @@
-const config = require('../config/site_conf'),
+/**
+ * 封装request
+ */
+const siteConf = require('../config/site_conf'),
       q = require('q'); 
       rp = require('request-promise'); 
 
 /**
  * 获取api url
  * @param {*} url 
+ * @param {*} rewrite 是否重写 
  */
-let getapi = (url) => {
+let getapi = (url, rewrite) => {
     let _urls = url.split('/');
     let _url = url;
     switch (_urls[1]) {
-        case 'api':
-            _url = config.siteConf.scenicurl + _url;
+        case 'wx':
+            if (!rewrite)
+                _url = siteConf.wxurl + _url;
+            else {
+                _url = _url.replace(`/${_urls[1]}`,'');
+                _url = siteConf.wxurl + _url;
+            }
             break;
-        case 'movie':
-            _url = config.siteConf.movieurl + _url;
+        case 'mock':
+            if (!rewrite)
+                _url = siteConf.mockurl + _url;
+            else {
+                _url = _url.replace(`/${_urls[1]}`,'');
+                _url = siteConf.mockurl + _url;
+            }
             break;
-        case 'cstore':
-            _url = config.siteConf.mockurl + _url;
         default:
             break;
     }
@@ -28,10 +40,11 @@ let getapi = (url) => {
  * get请求
  * @param {*} url 请求url
  * @param {*} params 请求参数对象
+ * @param {*} rewrite 是否重写
  * @param {*} headers 请求报文头
  */
-let get = (url, params, headers = null) => {
-    url = getapi(url);
+let get = (url, params, rewrite = false, headers = null) => {
+    url = getapi(url, rewrite);
     var options = {
         method: 'GET',
         uri: url,
@@ -60,10 +73,11 @@ let get = (url, params, headers = null) => {
  * post请求
  * @param {*} url 请求url
  * @param {*} params 请求参数对象
+ * @param {*} rewrite 是否重写
  * @param {*} headers 请求报文头
  */
-let post = (url, params, headers = null) => {
-    url = getapi(url);
+let post = (url, params, rewrite = false, headers = null) => {
+    url = getapi(url, rewrite);
     var options = {
         method: 'POST',
         uri: url,
