@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>顺带呗</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" href="/admin/plugins/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/admin/css/global.css" media="all">
+    <link rel="stylesheet" href="/admin/plugins/font-awesome/css/font-awesome.min.css">
+    <script type="text/javascript" src="/admin/plugins/layui/layui.js"></script>
+    <style>
+        #app{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1{
+            font-size: 70px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header header header-demo">
+            <div class="layui-main">
+                <div class="admin-login-box">
+                    <a class="logo" style="left: 0;" href="/">
+                        <span style="font-size: 22px;">顺带呗</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="layui-side layui-bg-black" id="admin-side">
+            <div class="layui-side-scroll" id="admin-navbar-side" lay-filter="side">
+                    <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                        <li class="layui-nav-item layui-nav-itemed">
+                            <a href="javascript:;">Items</a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="javascript:;">Javascript</a></dd>
+                                <dd><a href="javascript:;">RN</a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item"><a href="/share">Share</a></li>
+                    </ul>
+            </div>
+        </div> -->
+        <%-body %>
+        <div class="footer footer-demo" id="admin-footer">
+            <div class="layui-main">
+                <p>
+                    <span id="spdate"></span> 
+                    &copy;
+                    <a href="/">shundaibei Admin System</a> LGPL license
+                </p>
+            </div>
+        </div>
+        <div class="site-tree-mobile layui-hide">
+            <i class="layui-icon">&#xe602;</i>
+        </div>
+        <script>
+            layui.use('layer', function() {
+                var $ = layui.jquery,
+                    layer = layui.layer;
+            });
+            // 获取当前年份
+            document.getElementById('spdate').innerText = (new Date()).getFullYear();
+        </script>
+    </div>
+</body>
+</html>
