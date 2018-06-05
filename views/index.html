@@ -9,5 +9,5 @@
     }
 </style>
 <div id="app">
-    <h1>Hello 顺带下呗~</h1>
+    <h1>Hello <span><%= model.user ? model.user.username : '' %></span> 顺带下呗~</h1>
 </div>

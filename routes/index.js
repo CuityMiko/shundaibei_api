@@ -9,4 +9,7 @@ module.exports = function(app) {
 
   // 省市县
   require('./area')(app);
+
+  // 登录
+  require('./login')(app);
 };

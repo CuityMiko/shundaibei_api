@@ -3,5 +3,10 @@
  */
 
 exports.index = function(req, res) {
-    res.render('index');
+    var user = req.session.user;
+    res.render('index', {
+        model: {
+            user
+        }
+    });
 };

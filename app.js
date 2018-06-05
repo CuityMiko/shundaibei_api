@@ -5,11 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var redisStore = require('connect-redis')(session);
 // 图片验证码
 var svgCaptcha = require('svg-captcha');
 var expressLayouts = require('express-ejs-layouts'); // layout for html
 
 var app = express();
+
+// 配置信息
+var siteConf = require('./config/site_conf');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,12 +34,26 @@ app.use(express.static(path.join(__dirname, 'public')));
 // secret在正式用的时候务必修改
 // express中间件顺序要和下面一致
 // session持久化配置
+// app.use(session({
+//   secret: "shundaibei",
+//   key: "shundaibei",
+//   cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},// 超时时间
+//   saveUninitialized: true,
+//   resave: false,
+// }));
+
+// 使用redis存储session
 app.use(session({
-  secret: "cjnode",
-  key: "cjnode",
-  cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},// 超时时间
-  saveUninitialized: true,
+  store: new redisStore({
+    host: siteConf.redishost,
+    port: siteConf.redisport,
+    db: siteConf.redissession_db,
+    auth_pass: siteConf.redisauth_pwd,
+    logErrors: true
+  }),
+  secret: 'cjnode',
   resave: false,
+  saveUninitialized: true
 }));
 
 // 允许访问api的时候cors跨域（允许同域名不同端口号之间的跨域）
