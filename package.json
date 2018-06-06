@@ -18,6 +18,7 @@
     "http": "0.0.0",
     "https": "^1.0.0",
     "iconv-lite": "^0.4.23",
+    "log4js-node-mongodb": "^2.2.1",
     "moment": "^2.17.1",
     "morgan": "~1.6.1",
     "mysql": "^2.15.0",
