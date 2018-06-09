@@ -15,4 +15,7 @@ module.exports = function(app) {
 
   // 微信请求
   require('./wx')(app);
+
+  // 文件服务器操作
+  require('./files')(app); 
 };
