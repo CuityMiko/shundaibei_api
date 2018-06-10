@@ -51,7 +51,7 @@ app.use(session({
     auth_pass: siteConf.redisauth_pwd,
     logErrors: true
   }),
-  secret: 'cjnode',
+  secret: 'shundaibei',
   resave: false,
   saveUninitialized: true
 }));
