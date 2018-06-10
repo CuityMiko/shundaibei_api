@@ -4,7 +4,7 @@
 
 var path = require('path');
 var cos = require('../core/cos');
-var formidable = require('formidable'); //文件上传
+var tools = require('../common/tools');
 
 // 上传页
 exports.index = function(req, res) {
@@ -13,48 +13,19 @@ exports.index = function(req, res) {
 
 // 上传图片
 exports.uploadimage = function(req, res) {
-    var savePath = path.join(__dirname, '../uploads/images/');
-    var form = new formidable.IncomingForm({ uploadDir: savePath });
-    form.parse(req, function (err, fields, files) {
+    // tools.uploadImage(req).then((result) => {
+    //     res.json(result);
+    // }).catch((err) => {
+    //     console.log(err);
+    //     res.json(err);
+    // })
+
+    tools.uploadImageRemote(req, 'shundaibei/images/').then((result) => {
+        res.json(result);
+    }).catch((err) => {
         console.log(err);
-        console.log(fields);
-        console.log(files);
-        res.json('ok');
-        // var _dater = tools.dateFormat('yyyyMMddhhmmssSSS', new Date());
-        // var _drct = savePath;
-        // var oldpath = files.qqfile.path;
-        // fs.readFile(oldpath, function (err, data) {
-        //     if (err) {
-        //         console.log(111);
-        //     }
-        //     else {
-        //         var _imgpath = '/images/' + _dater + files.qqfile.name;
-        //         var _imgbtarr = data.toByteArray();
-        //         common.uploadImage({
-        //             FileName: _dater + files.qqfile.name,
-        //             ContentType: _getContentType(path.extname(oldpath)),
-        //             ContentLength: _imgbtarr.length,
-        //             ImgArr: _imgbtarr
-        //         }, (err, result) => {
-        //             if (err) {
-        //                 console.log(111);
-        //             } else {
-        //                 if (result.Results != null) {
-        //                     var _imgobj = {
-        //                         pictureId:result.Results[0].PictureId,
-        //                         thumb:result.Results[0].PictureUrl,
-        //                         showthumb:result.Results[0].PictureUrl,
-        //                         success:true
-        //                     };
-        //                     res.json(_imgobj);
-        //                 } else {
-        //                     console.log(111);
-        //                 }
-        //             }
-        //         });
-        //     }
-        // });
-    });
+        res.json(err);
+    })
 }
 
 // 上传

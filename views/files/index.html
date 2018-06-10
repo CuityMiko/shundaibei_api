@@ -11,13 +11,12 @@
                 <i class="layui-icon">&#xe67c;</i>上传图片
             </button>
         </div>
+        <img src="" alt="" srcset="" id="image" width="240" height="240">
       </fieldset>
 </div>
 <script>
     layui.use('upload', function(){
         var upload = layui.upload;
-        console.log(upload);
-        console.log(layui);
         //执行实例
         var uploadInst = upload.render({
             elem: '#test1' // 绑定元素
@@ -27,6 +26,7 @@
             ,done: function(res){
                 // 上传完毕回调
                 console.log(res);
+                document.getElementById('image').setAttribute('src', res.url);
             }
             ,error: function(err){
                 // 请求异常回调

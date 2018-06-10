@@ -75,4 +75,24 @@ cos.filedownload = (remotefile, localfile) => {
     return deferred.promise;
 }
 
+/**
+ * 删除文件
+ * @param {*} filename 文件名称
+ */
+cos.filedelete = (filename) => {
+    var deferred = q.defer();
+    var params = {
+        Bucket: _bucket,
+        Region: _region,
+        Key: filename
+    };
+    _cos.deleteObject(params, function(err, data) {
+        if (err)
+            deferred.reject(err);
+        else
+            deferred.resolve(data);
+    });
+    return deferred.promise;
+}
+
 module.exports = cos;
