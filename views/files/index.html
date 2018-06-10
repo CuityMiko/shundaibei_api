@@ -1,0 +1,37 @@
+<style scoped>
+    #files{
+        margin: 1rem;
+    }
+</style>
+<div id="files">
+    <fieldset class="layui-elem-field">
+        <legend>上传文件</legend>
+        <div class="layui-field-box">
+            <button type="button" class="layui-btn" id="test1">
+                <i class="layui-icon">&#xe67c;</i>上传图片
+            </button>
+        </div>
+      </fieldset>
+</div>
+<script>
+    layui.use('upload', function(){
+        var upload = layui.upload;
+        console.log(upload);
+        console.log(layui);
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test1' // 绑定元素
+            ,url: '/files/uploadimage' // 上传接口
+            ,size: 500 // 显示大小
+            // ,field: 'testupload' // 后端显示的字段名
+            ,done: function(res){
+                // 上传完毕回调
+                console.log(res);
+            }
+            ,error: function(err){
+                // 请求异常回调
+                console.log(err);
+            }
+        });
+    });
+</script>
