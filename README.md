@@ -1,7 +1,7 @@
 # 顺带呗项目api服务
 
 ## 项目启动
-+ 1. 默认端口号为3001，可在config/site_conf文件下修改port字段
++ 1. 默认端口号为4001，可在config/site_conf文件下修改port字段
 + 2. 项目运行
 ```bash
 
@@ -19,5 +19,5 @@ npm install node-dev -g
 npm start
 
 # browser
-http://localhost:3001/
+http://localhost:4001/
 ```
