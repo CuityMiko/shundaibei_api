@@ -18,4 +18,7 @@ module.exports = function(app) {
 
   // 文件服务器操作
   require('./files')(app); 
+
+  // 加密
+  require('./encrypt')(app);
 };
