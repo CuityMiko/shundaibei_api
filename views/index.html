@@ -9,23 +9,5 @@
     }
 </style>
 <div id="app">
-    <h1>Hello <span><%= model.user ? model.user.username : '' %></span> 顺带下呗~</h1>
-    <div id="divimg"></div>
+    <h1>Welcome to 顺带呗微信小程序API！</h1>
 </div>
-<script>
-    layui.use('jquery', function() {
-        var $ = layui.jquery;
-        
-        getcaptcha();
-
-        function getcaptcha() {
-            $.get('/login/captcha', function(data) {
-                $('#divimg').html(data);
-            })
-        }
-
-        $("#divimg").on("click", function() {
-            getcaptcha();
-        })
-    });
-</script>
